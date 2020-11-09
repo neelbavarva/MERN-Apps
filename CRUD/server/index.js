@@ -39,6 +39,14 @@ app.put('/update', async (req,res) => {
                 console.error(err);
         }
 })
+
+app.delete('/delete/:id', async (req, res) => {
+        const id = req.params.id;
+        await Food.findByIdAndRemove(id).exec();
+        res.send("Deleted");
+})
+
+
 console.log("**************")
 app.listen(4545);
 

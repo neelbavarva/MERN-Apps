@@ -23,11 +23,17 @@ function App() {
     })
   }
 
-  const updateFood = (id) => {
-    Axios.post("http://localhost:4545/update", {
+  const updateFood = (id, oldName) => {
+    console.log(`Want to update the Name: Old-Name-${oldName}   New-Name-${newFoodName}`);
+    Axios.put("http://localhost:4545/update", {
       id: id,
-      newFoodName: newFoodName
+      newFoodName: newFoodName,
     })
+    console.log(`id:${id} and newFoodName:${newFoodName}`);
+  }
+
+  const deleteFood = (id) => {
+    Axios.delete(`http://localhost:4545/delete/${id}`)
   }
 
   return (
@@ -53,8 +59,8 @@ function App() {
             <input type="text" placeholder="Update..." 
             onChange={(event) =>{
               setNewFoodName(event.target.value)} }/>
-            <button onClick={() => updateFood(val._id)}>Update</button><br/>
-            <button>Delete</button>
+            <button onClick={() => updateFood(val._id, val.foodName)}>Update</button><br/>
+            <button onClick={() => deleteFood(val._id)}>Delete</button>
             <hr/>
           </div>
         );
