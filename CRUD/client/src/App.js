@@ -21,6 +21,7 @@ function App() {
       foodName: foodName,
       days: days,
     })
+    window.location.reload(false);
   }
 
   const updateFood = (id, oldName) => {
@@ -30,10 +31,12 @@ function App() {
       newFoodName: newFoodName,
     })
     console.log(`id:${id} and newFoodName:${newFoodName}`);
+    window.location.reload(false);
   }
 
   const deleteFood = (id) => {
-    Axios.delete(`http://localhost:4545/delete/${id}`)
+    Axios.delete(`http://localhost:4545/delete/${id}`);
+    window.location.reload(false);
   }
 
   return (

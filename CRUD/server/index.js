@@ -12,6 +12,11 @@ mongoose.connect('mongodb://localhost/food', { useNewUrlParser: true, useUnified
         .then(() => console.log('Connected to MongoDB....'))
         .catch(err => console.log('Failed...', err));
 
+app.get('/read', async (req,res) => {
+        const food = await Food.find()
+        res.send(food);
+})
+
 app.post('/insert', async (req,res) => {
         const foodName = req.body.foodName
         const days = req.body.days
@@ -20,10 +25,6 @@ app.post('/insert', async (req,res) => {
         res.send(food);
 })
 
-app.get('/read', async (req,res) => {
-        const food = await Food.find()
-        res.send(food);
-})
 
 app.put('/update', async (req,res) => {
        const newFoodName = req.body.newFoodName;
